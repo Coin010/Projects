@@ -1,0 +1,38 @@
+# Print a NULL-terminated string from data memory
+# Program layout:
+# 0: LD   r1, ptr_string
+# 1: LDR  r2, r1, #0
+# 2: BRz  end
+# 3: PUTC r2
+# 4: ADD  r1, r1, #1
+# 5: JMP  loop
+# 6: HALT
+# 7: ptr_string (address of first char)
+# 8+: string data (16-bit chars), terminated by NULL
+Instruction: 15-21
+Data: 22-28
+
+0100001000000111
+0110010001000000
+1100010000000110
+1011010111111111
+0001001001100001
+1101000000000001
+0000000000000000
+0000000000001000
+0000000001001000
+0000000001000101
+0000000001001100
+0000000001001100
+0000000001001111
+0000000000000000
+
+#Data Layout
+
+# 22: pointer value = 8 (start of string).
+# 23: 'H'.
+# 24: 'E'.
+# 25: 'L'.
+# 26: 'L'.
+# 27: 'O'.
+# 28: NULL 

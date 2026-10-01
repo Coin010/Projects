@@ -1,0 +1,24 @@
+# Test program for AND instruction
+# Tests both register mode (SR1 & SR2) and immediate mode (SR1 & imm5)
+# LOAD into location 0 in memory
+
+# Address map:
+# 0: LD  r1, offset9=5    ; r1 <- memory[8] = 1111100000001010 (4)
+# 1: LD  r2, offset9=6    ; r2 <- memory[9] = 0000000000000111 (5)
+# 2: AND r3, r1, r2       ; r3 <- r1 & r2 = 1010 & 0111 = 0010 = 2 (register mode)
+# 3: AND r4, r1, imm5     ; r4 <- r1 & imm5 = 1111100000001010 & 1111 1111 1111 0010 = 1111 1000 0000 0010 = -2046 2s compliment (imm5)
+# 4 HALT
+# 5 Test Data: -2038 (decimal in 2's compliment)
+# 6 Test Data: 7 (decimal)
+
+0100001000000101
+0100010000000110
+0010011001000010
+0010100001110010
+0000000000000000
+1111100000001010
+0000000000000111
+
+# Final output 
+# r3 = 0000 0000 0000 0010
+# r4 = 1111 1000 0000 0010
