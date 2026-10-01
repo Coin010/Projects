@@ -1,0 +1,65 @@
+# Multiply two user-entered integers and print the product.
+# Uses repeated addition and handles negative values.
+#
+# r1 = multiplicand (absolute value)
+# r2 = multiplier  (absolute value, loop counter)
+# r3 = result
+# r6 = sign toggle (0 = positive, -1 = negative)
+#
+# 0  GET  r1 (integer)
+# 1  GET  r2 (integer)
+# 2  AND  r3, r3, #0     ; result = 0 CLEAR r3
+# 3  AND  r6, r6, #0     ; sign flag = 0 CLEAR r6
+# 4  ADD  r1, r1, #0     ; set CC from r1 THIS IS FOR NZP branch
+# 5  BRzp x_ok           ; If r1 was zero or positive, skip negation and go to line 9.
+# 6  NOT  r1, r1         ; negative case, start by iinverting r1 (2's compliment)
+# 7  ADD  r1, r1, #1     ; r1 = abs(r1)
+# 8  NOT  r6, r6         ; toggle sign
+# 9  ADD  r2, r2, #0     ; set CC from r2 THIS IS FOR NZP branch
+# 10 BRzp y_ok           ; If r2 was zero or positive, skip negation and go to line 14
+# 11 NOT  r2, r2
+# 12 ADD  r2, r2, #1     ; r2 = abs(r2)
+# 13 NOT  r6, r6         ; toggle sign
+# 14 ADD  r2, r2, #0        THIS IS FOR NZP branch
+# 15 BRz  finish_mult    ; if multiplier is 0, skip loop
+# 16 ADD  r3, r3, r1     ; loop: result += r1
+# 17 ADD  r2, r2, #-1
+# 18 BRp  loop           ; goes until r2 isn't positive
+# 19 BRz  finish_mult    ; If r2 reached zero, go to line 22
+# 20 BRn  finish_mult    ; defensive: if r2 somehow negative, also finish.
+# 21 (unused)
+# 22 ADD  r6, r6, #0     ; set CC from sign THIS IS FOR NZP branch
+# 23 BRz  output         ; sign == 0 => positive result
+# 24 NOT  r3, r3         ; start negation
+# 25 ADD  r3, r3, #1     ; apply negative sign
+# 26 PUT  r3 (integer)
+# 27 HALT
+
+1010001011111111
+1010010011111111
+0010011011100000
+0010110111100000
+0001001001100000
+1100011000001001
+0011001001111111
+0001001001100001
+0011110110111111
+0001010010100000
+1100011000001110
+0011010010111111
+0001010010100001
+0011110110111111
+0001010010100000
+1100010000010110
+0001011011000001
+0001010010111111
+1100001000010000
+1100010000010110
+1100100000010110
+0010000000100000
+0001110110100000
+1100010000011010
+0011011011111111
+0001011011100001
+1011011011111111
+0000000000000000

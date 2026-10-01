@@ -1,0 +1,17 @@
+# Test program for NOT instruction
+# LOAD into location 0 in memory
+
+# Address map:
+# 0: LD  r1, offset9=3    ; r1 <- memory[3] = 0000000000000101 (5)
+# 1: NOT r2, r1           ; r2 <- ~r1 = 1111111111111010
+# 2: HALT
+# 3: Test data
+
+0100001000000011
+0011010001111111
+0000000000000000
+0000000000000101
+
+# Final output
+# r1 = 0000 0000 0000 0101
+# r2 = 1111 1111 1111 1010

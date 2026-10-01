@@ -1,0 +1,25 @@
+# Test program for ADD instruction
+# Tests both register mode (SR1 + SR2) and immediate mode (SR1 + imm5)
+# 
+# Address map:
+# 0: LD  r1, offset9=8    ; r1 <- memory[8] = 0000000000001010 (10)
+# 1: LD  r2, offset9=9    ; r2 <- memory[9] = 0000000000000111 (7)  
+# 2: ADD r3, r1, r2       ; r3 <- r1 + r2 = 10 + 7 = 17 (register mode)
+# 3: ADD r4, r1, #5       ; r4 <- r1 + 5 = 10 + 5 = 15 (immediate mode, positive)
+# 4: ADD r5, r1, #-3      ; r5 <- r1 + (-3) = 10 + (-3) = 7 (immediate mode, negative)
+# 5: ADD r6, r2, #-10     ; r6 <- r2 + (-10) = 7 + (-10) = -3 (immediate mode, large negative)
+# 6: HALT
+# 7: (unused)
+# 8: Test data: 10 decimal
+# 9: Test data: 7 decimal
+
+0100001000001000
+0100010000001001
+0001011001000010
+0001100001100101
+0001101001111101
+0001110010110110
+0000000000000000
+0000000000000000
+0000000000001010
+0000000000000111

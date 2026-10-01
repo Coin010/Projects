@@ -1,0 +1,17 @@
+# Test program for GET/GETC and PUT/PUTC instructions
+# This program demonstrates input and output operations
+
+# GET integer input into register r1
+1010001011111111
+
+# PUT integer output from register r1
+1011001011111111
+
+# GETC character input into register r2
+1010010111111111
+
+# PUTC character output from register r2
+1011010111111111
+
+# BREAK - halt the program
+0000000000000000

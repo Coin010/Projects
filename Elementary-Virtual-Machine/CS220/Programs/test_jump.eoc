@@ -1,0 +1,39 @@
+# Test program for JMP and JSR instructions
+# This demonstrates unconditional jumps and subroutine calls
+
+# Initialize r0 with value 1 for demonstration
+0001000000100001
+
+# Print initial value
+1011000011111111
+
+# JMP: Unconditional jump to offset 6 (L=0)
+1101000000000110
+
+# These instructions should be skipped due to JMP
+0001000000100001
+0001000000100001
+0001000000100001
+
+# Target of JMP (offset 8): Add 5 to r0
+0001000000100101
+
+# Print value after jump (should be 6)
+1011000011111111
+
+# JSR: Call subroutine at offset 11 (L=1, saves IP to R7)
+11011000000010101
+
+# This should execute after return from subroutine
+# Print final value
+1011000011111111
+
+# HALT - end of main program
+0000000000000000
+
+# SUBROUTINE starts here (offset 11)
+# Add 10 to r0
+0001000000101010
+
+# RET: Return from subroutine (restores IP from R7)
+1111000000000000
